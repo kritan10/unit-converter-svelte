@@ -1,75 +1,88 @@
 <script>
-	import UnitInput from '../lib/UnitInput.svelte';
-	import MathFunctions from '../lib/MathFunctions.js';
+	import AreaConverter from '../lib/converter_components/AreaConverter.svelte';
+	import MassConverter from '../lib/converter_components/MassConverter.svelte';
+	import VolumeConveter from '../lib/converter_components/VolumeConveter.svelte';
 
-	let unit = {
-		ropani: 0,
-		anna: 0,
-		paisa: 0,
-		dam: 0,
-		mtr: 0,
-		sqrft: 0
+	const Converter = {
+		AreaConverter: 'a',
+		MassConverter: 'm',
+		VolumeConverter: 'v'
 	};
+	Object.freeze(Converter);
+	// const today = new Date();
 
-	function onChangeHandler(event) {
-		unit[event.target.id] = +event.target.value;
-
-		if (
-			event.target.id === 'ropani' ||
-			event.target.id === 'anna' ||
-			event.target.id === 'paisa' ||
-			event.target.id === 'dam'
-		) {
-			unit.mtr = (unit.ropani * 256 + unit.anna * 16 + unit.paisa * 4 + unit.dam * 1) * 1.99;
-			unit.sqrft = (unit.ropani * 256 + unit.anna * 16 + unit.paisa * 4 + unit.dam * 1) * 21.4;
-
-			return;
-		}
-
-		if (event.target.id === 'mtr') {
-			unit.sqrft = unit.mtr * 10.764;
-
-			const tempDam = (unit.mtr / 1.99).toFixed(0);
-			const result = MathFunctions.convertToRopani(tempDam);
-
-			unit.dam = result[3];
-			unit.paisa = result[2];
-			unit.anna = result[1];
-			unit.ropani = result[0];
-
-			return;
-		}
-
-		if (event.target.id === 'sqrft') {
-			unit.mtr = unit.sqrft / 10.764;
-
-			const tempDam = (unit.sqrft / 21.4).toFixed(0);
-			const result = MathFunctions.convertToRopani(tempDam);
-
-			unit.dam = result[3];
-			unit.paisa = result[2];
-			unit.anna = result[1];
-			unit.ropani = result[0];
-
-			return;
-		}
-	}
+	let currentButton = Converter.AreaConverter;
 </script>
 
 <body>
-	<h1>Nepali Unit Converter</h1>
+	<header>
+		<h1>Nepali Unit Converter</h1>
+		<!-- {today} -->
+	</header>
+	<main>
+		<div class="root">
+			<div class="toggle-bar">
+				<button
+					class:active={currentButton === Converter.AreaConverter}
+					on:click={() => (currentButton = Converter.AreaConverter)}
+				>
+					Area Converter
+				</button>
+				<button
+					class:active={currentButton === Converter.MassConverter}
+					on:click={() => (currentButton = Converter.MassConverter)}
+				>
+					Weight Converter
+				</button>
+				<button
+					class:active={currentButton === Converter.VolumeConverter}
+					on:click={() => (currentButton = Converter.VolumeConverter)}
+				>
+					Volume Converter
+				</button>
+			</div>
 
-	<div>
-		<p>Area/Land Converter</p>
-		<div>
-			<UnitInput id="ropani" value={unit.ropani} {onChangeHandler} />
-			<UnitInput id="anna" value={unit.anna} {onChangeHandler} />
-			<UnitInput id="paisa" value={unit.paisa} {onChangeHandler} />
-			<UnitInput id="dam" value={unit.dam} {onChangeHandler} />
+			{#if currentButton === Converter.AreaConverter}
+				<AreaConverter />
+			{:else if currentButton === Converter.MassConverter}
+				<MassConverter />
+			{:else if currentButton === Converter.VolumeConverter}
+				<VolumeConveter />
+			{/if}
 		</div>
-		<div>
-			<UnitInput id="mtr" value={unit.mtr} {onChangeHandler} />
-			<UnitInput id="sqrft" value={unit.sqrft} {onChangeHandler} />
-		</div>
-	</div>
+	</main>
 </body>
+
+<style>
+	main {
+		height: 70vh;
+		width: 100vw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.root {
+		border: 1px solid blue;
+		height: 50vh;
+		width: 50vw;
+	}
+
+	.active {
+		background-color: #ff3e00;
+		color: white;
+	}
+
+	.toggle-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.toggle-bar button {
+		width: 100%;
+		padding: 20px 0px;
+		cursor: pointer;
+		border-radius: 0;
+	}
+</style>
