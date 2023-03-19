@@ -1,6 +1,7 @@
 <script>
 	import AreaConverter from '../lib/converter_components/AreaConverter.svelte';
 	import MassConverter from '../lib/converter_components/MassConverter.svelte';
+	import ToggleButton from '../lib/converter_components/ToggleButton.svelte';
 	import VolumeConveter from '../lib/converter_components/VolumeConveter.svelte';
 
 	const Converter = {
@@ -12,6 +13,10 @@
 	// const today = new Date();
 
 	let currentButton = Converter.AreaConverter;
+
+	function toggleButton(value) {
+		currentButton = value;
+	}
 </script>
 
 <body>
@@ -22,33 +27,35 @@
 	<main>
 		<div class="root">
 			<div class="toggle-bar">
-				<button
-					class:active={currentButton === Converter.AreaConverter}
-					on:click={() => (currentButton = Converter.AreaConverter)}
-				>
-					Area Converter
-				</button>
-				<button
-					class:active={currentButton === Converter.MassConverter}
-					on:click={() => (currentButton = Converter.MassConverter)}
-				>
-					Weight Converter
-				</button>
-				<button
-					class:active={currentButton === Converter.VolumeConverter}
-					on:click={() => (currentButton = Converter.VolumeConverter)}
-				>
-					Volume Converter
-				</button>
+				<ToggleButton
+					button={Converter.AreaConverter}
+					{currentButton}
+					{toggleButton}
+					buttonLabel="Area Converter"
+				/>
+				<ToggleButton
+					button={Converter.MassConverter}
+					{currentButton}
+					{toggleButton}
+					buttonLabel="Mass Converter"
+				/>
+				<ToggleButton
+					button={Converter.VolumeConverter}
+					{currentButton}
+					{toggleButton}
+					buttonLabel="Volume Converter"
+				/>
 			</div>
-
-			{#if currentButton === Converter.AreaConverter}
-				<AreaConverter />
-			{:else if currentButton === Converter.MassConverter}
-				<MassConverter />
-			{:else if currentButton === Converter.VolumeConverter}
-				<VolumeConveter />
-			{/if}
+			
+			<div class='converter'>
+				{#if currentButton === Converter.AreaConverter}
+					<AreaConverter />
+				{:else if currentButton === Converter.MassConverter}
+					<MassConverter />
+				{:else if currentButton === Converter.VolumeConverter}
+					<VolumeConveter />
+				{/if}
+			</div>
 		</div>
 	</main>
 </body>
@@ -63,14 +70,11 @@
 	}
 
 	.root {
-		border: 1px solid blue;
-		height: 50vh;
+		background-color: rgba(0, 0, 0, 0.1);
+		padding-bottom: 28px;
 		width: 50vw;
-	}
-
-	.active {
-		background-color: #ff3e00;
-		color: white;
+		height: 60vh;
+		border-radius: 16px;
 	}
 
 	.toggle-bar {
@@ -79,10 +83,7 @@
 		justify-content: space-between;
 	}
 
-	.toggle-bar button {
-		width: 100%;
-		padding: 20px 0px;
-		cursor: pointer;
-		border-radius: 0;
+	.converter{
+		padding: 0px 40px;
 	}
 </style>
