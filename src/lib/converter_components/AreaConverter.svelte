@@ -58,12 +58,14 @@
 
 <div class="main-card">
 	<h2>Area/Land Converter</h2>
-	<h3>Nepali Metrics</h3>
-	<UnitInput id="ropani" value={unit.ropani} {onChangeHandler} />
-	<UnitInput id="anna" value={unit.anna} {onChangeHandler} />
-	<UnitInput id="paisa" value={unit.paisa} {onChangeHandler} />
-	<UnitInput id="dam" value={unit.dam} {onChangeHandler} />
-	<div>
+	<div class="div-a">
+		<h3>Nepali Metrics</h3>
+		<UnitInput id="ropani" value={unit.ropani} {onChangeHandler} />
+		<UnitInput id="anna" value={unit.anna} {onChangeHandler} />
+		<UnitInput id="paisa" value={unit.paisa} {onChangeHandler} />
+		<UnitInput id="dam" value={unit.dam} {onChangeHandler} />
+	</div>
+	<div class="div-a">
 		<h3>International Metrics</h3>
 		<UnitInput id="mtr" value={unit.mtr} label="Meter Sq." unit="m<sup>2</sup>" {onChangeHandler} />
 		<UnitInput
@@ -77,9 +79,9 @@
 </div>
 
 <style>
-	.main-card {
-		padding: 12px;
+
+
+	.div-a {
+		margin-top: 40px;
 	}
-
-
 </style>

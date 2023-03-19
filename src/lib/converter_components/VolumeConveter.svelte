@@ -35,12 +35,14 @@
 
 <div>
 	<h2>Volume Converter</h2>
+	<h3>Nepali Metrics</h3>
 	<div>
 		<UnitInput id="muthi" value={unit.muthi} {onChangeHandler} />
 		<UnitInput id="mana" value={unit.mana} {onChangeHandler} />
 		<UnitInput id="pathi" value={unit.pathi} {onChangeHandler} />
 		<UnitInput id="muri" value={unit.muri} {onChangeHandler} />
 	</div>
+	<h3>International Metrics</h3>
 	<div>
 		<UnitInput id="kg" value={unit.kg} {onChangeHandler} />
 		<UnitInput id="lbs" value={unit.lbs} {onChangeHandler} />
