@@ -35,16 +35,22 @@
 
 <div>
 	<h2>Volume Converter</h2>
-	<h3>Nepali Metrics</h3>
-	<div>
+	<div class="div-a">
+		<h3>Nepali Metrics</h3>
 		<UnitInput id="muthi" value={unit.muthi} {onChangeHandler} />
 		<UnitInput id="mana" value={unit.mana} {onChangeHandler} />
 		<UnitInput id="pathi" value={unit.pathi} {onChangeHandler} />
 		<UnitInput id="muri" value={unit.muri} {onChangeHandler} />
 	</div>
-	<h3>International Metrics</h3>
-	<div>
+	<div class="div-a">
+		<h3>International Metrics</h3>
 		<UnitInput id="kg" value={unit.kg} {onChangeHandler} />
 		<UnitInput id="lbs" value={unit.lbs} {onChangeHandler} />
 	</div>
 </div>
+
+<style>
+	.div-a {
+		margin-top: 40px;
+	}
+</style>

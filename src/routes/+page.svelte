@@ -32,22 +32,25 @@
 					{currentButton}
 					{toggleButton}
 					buttonLabel="Area Converter"
+					buttonClass="first"
 				/>
 				<ToggleButton
 					button={Converter.MassConverter}
 					{currentButton}
 					{toggleButton}
 					buttonLabel="Mass Converter"
+					buttonClass=""
 				/>
 				<ToggleButton
 					button={Converter.VolumeConverter}
 					{currentButton}
 					{toggleButton}
 					buttonLabel="Volume Converter"
+					buttonClass="last"
 				/>
 			</div>
-			
-			<div class='converter'>
+
+			<div class="converter">
 				{#if currentButton === Converter.AreaConverter}
 					<AreaConverter />
 				{:else if currentButton === Converter.MassConverter}
@@ -83,7 +86,7 @@
 		justify-content: space-between;
 	}
 
-	.converter{
+	.converter {
 		padding: 0px 40px;
 	}
 </style>

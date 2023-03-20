@@ -47,18 +47,24 @@
 
 <div>
 	<h2>Weight Converter</h2>
-	<div>
+	<div class="div-a">
 		<h3>Tola/Gram Converter</h3>
 		<UnitInput id="tola" value={unit.tola} {onChangeHandler} />
 		<UnitInput id="gm" value={unit.gm} {onChangeHandler} />
 	</div>
-	<div>
+	<div class="div-a">
 		<h3>Pau/Dharni - Kg/Lbs Converter</h3>
 		<UnitInput id="dharni" value={unit.dharni} {onChangeHandler} />
 		<UnitInput id="pau" value={unit.pau} {onChangeHandler} />
 	</div>
-	<div>
+	<div class="div-a">
 		<UnitInput id="kg" value={unit.kg} {onChangeHandler} />
 		<UnitInput id="lbs" value={unit.lbs} {onChangeHandler} />
 	</div>
 </div>
+
+<style>
+	.div-a {
+		margin-top: 40px;
+	}
+</style>
