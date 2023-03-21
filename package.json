@@ -21,5 +21,8 @@
 		"svelte": "^3.54.0",
 		"vite": "^4.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"nepali-date-converter": "^3.3.1"
+	}
 }
