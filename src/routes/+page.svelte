@@ -3,6 +3,7 @@
 	import MassConverter from '../lib/converter_components/MassConverter.svelte';
 	import ToggleButton from '../lib/converter_components/ToggleButton.svelte';
 	import VolumeConveter from '../lib/converter_components/VolumeConveter.svelte';
+	import NepaliDate from 'nepali-date-converter';
 
 	const Converter = {
 		AreaConverter: 'a',
@@ -10,7 +11,8 @@
 		VolumeConverter: 'v'
 	};
 	Object.freeze(Converter);
-	// const today = new Date();
+	let today = new NepaliDate();
+	today = today.format('ddd, DD MMMM YYYY');
 
 	let currentButton = Converter.AreaConverter;
 
@@ -22,7 +24,9 @@
 <body>
 	<header>
 		<h1>Nepali Unit Converter</h1>
-		<!-- {today} -->
+		<div>
+			{today}
+		</div>
 	</header>
 	<main>
 		<div class="root">
@@ -66,13 +70,16 @@
 <style>
 	header {
 		border-bottom: 1px solid black;
-		margin: 18px;
+		margin: 12px 18px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 
 	body {
 		margin: 0;
 		padding: 0;
-		height: 100vh;
+		/* height: 95vh; */
 		font-family: 'Poppins', sans-serif;
 	}
 
@@ -82,7 +89,6 @@
 
 	main {
 		height: 80vh;
-		width: 100vw;
 		display: flex;
 		align-items: center;
 		justify-content: center;
