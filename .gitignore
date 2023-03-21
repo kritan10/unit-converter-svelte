@@ -22,4 +22,4 @@ _actual*.*
 _output
 /types
 .eslintcache
-/static
+static
