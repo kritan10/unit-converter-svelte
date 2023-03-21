@@ -64,8 +64,24 @@
 </body>
 
 <style>
+	header {
+		border-bottom: 1px solid black;
+		margin: 18px;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+		height: 100vh;
+		font-family: 'Poppins', sans-serif;
+	}
+
+	h1 {
+		font-family: 'Roboto Condensed', sans-serif;
+	}
+
 	main {
-		height: 70vh;
+		height: 80vh;
 		width: 100vw;
 		display: flex;
 		align-items: center;
@@ -73,11 +89,13 @@
 	}
 
 	.root {
-		background-color: rgba(0, 0, 0, 0.1);
+		/* border: 1px solid black; */
+		background-color: rgba(152, 144, 144, 0.1);
 		padding-bottom: 28px;
 		width: 50vw;
 		height: 60vh;
-		border-radius: 16px;
+		border-radius: 12px;
+		box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 	}
 
 	.toggle-bar {
