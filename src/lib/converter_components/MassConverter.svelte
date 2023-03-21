@@ -1,6 +1,7 @@
 <script>
 	import UnitInput from '../UnitInput.svelte';
 	import MathFunctions from '../MathFunctions.js';
+	import Converter from './Converter.svelte';
 
 	let unit = {
 		tola: 0,
@@ -45,26 +46,21 @@
 	}
 </script>
 
-<div>
-	<h2>Weight Converter</h2>
-	<div class="div-a">
-		<h3>Tola/Gram Converter</h3>
-		<UnitInput id="tola" value={unit.tola} {onChangeHandler} />
-		<UnitInput id="gm" value={unit.gm} {onChangeHandler} />
-	</div>
-	<div class="div-a">
-		<h3>Pau/Dharni - Kg/Lbs Converter</h3>
+<Converter>
+	<span slot="header">Weight Converter</span>
+	<span slot="top-header"> Tola/Gram Converter </span>
+	<span slot="nep-met">
+		<div>
+			<UnitInput id="tola" value={unit.tola} {onChangeHandler} />
+			<UnitInput id="gm" value={unit.gm} {onChangeHandler} />
+		</div>
+	</span>
+	<span slot="bot-header"> Pau/Dharni - Kg/Lbs Converter </span>
+	<span slot="int-met">
 		<UnitInput id="dharni" value={unit.dharni} {onChangeHandler} />
 		<UnitInput id="pau" value={unit.pau} {onChangeHandler} />
-	</div>
-	<div class="div-a">
-		<UnitInput id="kg" value={unit.kg} {onChangeHandler} />
+		<span style="height: 30px; display: block" />
+		<UnitInput id="kg" label="kilos...." value={unit.kg} {onChangeHandler} />
 		<UnitInput id="lbs" value={unit.lbs} {onChangeHandler} />
-	</div>
-</div>
-
-<style>
-	.div-a {
-		margin-top: 40px;
-	}
-</style>
+	</span>
+</Converter>

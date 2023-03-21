@@ -1,6 +1,7 @@
 <script>
 	import UnitInput from '../UnitInput.svelte';
 	import MathFunctions from '../MathFunctions.js';
+	import Converter from './Converter.svelte';
 
 	let unit = {
 		ropani: 0,
@@ -12,6 +13,10 @@
 	};
 
 	function onChangeHandler(event) {
+		if (isNaN(userInput)) {
+			event.target.value = unit[event.target.id];
+			return;
+		}
 		unit[event.target.id] = +event.target.value;
 
 		if (
@@ -56,17 +61,15 @@
 	}
 </script>
 
-<div class="main-card">
-	<h2>Area/Land Converter</h2>
-	<div class="div-a">
-		<h3>Nepali Metrics</h3>
+<Converter>
+	<span slot="header">Area/Land Converter</span>
+	<span slot="nep-met">
 		<UnitInput id="ropani" value={unit.ropani} {onChangeHandler} />
 		<UnitInput id="anna" value={unit.anna} {onChangeHandler} />
 		<UnitInput id="paisa" value={unit.paisa} {onChangeHandler} />
 		<UnitInput id="dam" value={unit.dam} {onChangeHandler} />
-	</div>
-	<div class="div-a">
-		<h3>International Metrics</h3>
+	</span>
+	<span slot="int-met">
 		<UnitInput id="mtr" value={unit.mtr} label="Meter Sq." unit="m<sup>2</sup>" {onChangeHandler} />
 		<UnitInput
 			id="sqrft"
@@ -75,12 +78,5 @@
 			unit="ft<sup>2</sup>"
 			{onChangeHandler}
 		/>
-	</div>
-</div>
-
-<style>
-
-	.div-a {
-		margin-top: 40px;
-	}
-</style>
+	</span>
+</Converter>

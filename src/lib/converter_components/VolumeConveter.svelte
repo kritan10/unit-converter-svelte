@@ -1,6 +1,7 @@
 <script>
 	import UnitInput from '../UnitInput.svelte';
 	import MathFunctions from '../MathFunctions.js';
+	import Converter from './Converter.svelte';
 
 	let unit = {
 		muthi: 0,
@@ -13,7 +14,14 @@
 	};
 
 	function onChangeHandler(event) {
-		unit[event.target.id] = +event.target.value;
+		let userInput = event.target.value;
+
+		if (isNaN(userInput)) {
+			event.target.value = unit[event.target.id];
+			return;
+		}
+
+		unit[event.target.id] = +userInput;
 
 		if (
 			event.target.id === 'muthi' ||
@@ -33,24 +41,17 @@
 	}
 </script>
 
-<div>
-	<h2>Volume Converter</h2>
-	<div class="div-a">
-		<h3>Nepali Metrics</h3>
+<Converter>
+	<span slot="header">Volume Converter</span>
+	<span slot="nep-met">
 		<UnitInput id="muthi" value={unit.muthi} {onChangeHandler} />
 		<UnitInput id="mana" value={unit.mana} {onChangeHandler} />
 		<UnitInput id="pathi" value={unit.pathi} {onChangeHandler} />
 		<UnitInput id="muri" value={unit.muri} {onChangeHandler} />
-	</div>
-	<div class="div-a">
-		<h3>International Metrics</h3>
+	</span>
+
+	<span slot="int-met">
 		<UnitInput id="kg" value={unit.kg} {onChangeHandler} />
 		<UnitInput id="lbs" value={unit.lbs} {onChangeHandler} />
-	</div>
-</div>
-
-<style>
-	.div-a {
-		margin-top: 40px;
-	}
-</style>
+	</span>
+</Converter>
