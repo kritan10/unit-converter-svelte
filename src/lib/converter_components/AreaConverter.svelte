@@ -13,6 +13,7 @@
 	};
 
 	function onChangeHandler(event) {
+		let userInput = event.target.value;
 		if (isNaN(userInput)) {
 			event.target.value = unit[event.target.id];
 			return;
