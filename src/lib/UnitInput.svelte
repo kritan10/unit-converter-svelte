@@ -16,6 +16,12 @@
 	input[type='text'] {
 		width: 80px;
 		padding: 6px;
+		font-family: 'Poppins', sans-serif;
+	}
+
+	div,
+	label {
+		font-size: 13px;
 	}
 
 	label {
